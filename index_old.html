@@ -1,340 +1,717 @@
-<html xmlns="http://www.w3.org/1999/html"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="keywords" content="Quan XIAO, Jiangxi University of Finance and Economics, School of Information Management, 肖泉">
-    <meta name="description" content="Quan XIAO's Homepage">
-    <link href="main_style.css" media="all" rel="stylesheet">
-    <title>Quan XIAO, Professor, Jiangxi University of Finance and Economics</title>
-</head>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>小宽量化 | Xiaoquant — 智能量化财经管理</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
 
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+  --bg-deep:#07060e;
+  --bg-mid:#0f0d1a;
+  --bg-card:rgba(255,255,255,0.03);
+  --accent-purple:#8b5cf6;
+  --accent-cyan:#06d6a0;
+  --accent-electric:#00d4ff;
+  --text-primary:#eef0ff;
+  --text-muted:#8b8da3;
+  --border-glow:rgba(139,92,246,0.15);
+  --gradient-hero:linear-gradient(160deg,#0a0718 0%,#12102a 40%,#0d1a2d 100%);
+  --gradient-card:linear-gradient(135deg,rgba(139,92,246,0.08),rgba(6,214,160,0.04));
+}
+
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+
+body{
+  font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;
+  background:var(--bg-deep);
+  color:var(--text-primary);
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+
+::selection{background:var(--accent-purple);color:#fff}
+
+canvas#particles{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:0.6}
+
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  padding:0 48px;height:72px;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(7,6,14,0.72);
+  backdrop-filter:blur(24px);
+  border-bottom:1px solid var(--border-glow);
+  transition:background .3s;
+}
+
+.nav-logo{
+  font-family:'Rajdhani','Noto Sans SC',sans-serif;
+  font-size:22px;font-weight:700;letter-spacing:2px;
+  background:linear-gradient(135deg,var(--accent-purple),var(--accent-electric));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  text-transform:uppercase;
+}
+
+.nav-links{display:flex;gap:32px;list-style:none}
+
+.nav-links a{
+  color:var(--text-muted);text-decoration:none;font-size:14px;font-weight:500;
+  letter-spacing:1px;position:relative;transition:color .3s;
+}
+
+.nav-links a::after{
+  content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;
+  background:linear-gradient(90deg,var(--accent-purple),var(--accent-electric));
+  transition:width .3s;
+}
+
+.nav-links a:hover{color:var(--text-primary)}
+.nav-links a:hover::after{width:100%}
+
+.hero{
+  min-height:100vh;display:flex;flex-direction:column;
+  justify-content:center;align-items:center;text-align:center;
+  padding:120px 24px 80px;position:relative;z-index:1;
+  background:var(--gradient-hero);
+}
+
+.hero::before{
+  content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:800px;height:800px;
+  background:radial-gradient(circle,rgba(139,92,246,0.08) 0%,transparent 70%);
+  pointer-events:none;
+}
+
+.hero::after{
+  content:'';position:absolute;top:30%;left:60%;transform:translate(-50%,-50%);
+  width:500px;height:500px;
+  background:radial-gradient(circle,rgba(6,214,160,0.06) 0%,transparent 70%);
+  pointer-events:none;
+}
+
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:6px 18px;border-radius:100px;
+  background:rgba(139,92,246,0.1);border:1px solid rgba(139,92,246,0.2);
+  font-size:13px;color:var(--accent-purple);font-weight:500;letter-spacing:1px;
+  margin-bottom:32px;
+  animation:fadeUp .8s ease-out;
+}
+
+.hero-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--accent-cyan);animation:pulse-dot 2s infinite}
+
+.hero h1{
+  font-family:'Rajdhani','Noto Sans SC',sans-serif;
+  font-size:clamp(48px,8vw,96px);font-weight:700;
+  line-height:1.05;margin-bottom:24px;letter-spacing:-1px;
+  animation:fadeUp .8s ease-out .1s both;
+}
+
+.hero h1 .gradient-text{
+  background:linear-gradient(135deg,var(--accent-purple) 0%,var(--accent-electric) 50%,var(--accent-cyan) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+
+.hero p{
+  font-size:clamp(16px,2vw,20px);color:var(--text-muted);
+  max-width:640px;line-height:1.8;font-weight:300;
+  animation:fadeUp .8s ease-out .2s both;
+}
+
+.hero-stats{
+  display:flex;gap:64px;margin-top:64px;
+  animation:fadeUp .8s ease-out .3s both;
+}
+
+.hero-stat{text-align:center}
+
+.hero-stat .number{
+  font-family:'Rajdhani',monospace;font-size:40px;font-weight:700;
+  background:linear-gradient(135deg,var(--accent-purple),var(--accent-electric));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+
+.hero-stat .label{font-size:13px;color:var(--text-muted);margin-top:4px;letter-spacing:1px}
+
+.hero-cta{
+  display:flex;gap:16px;margin-top:56px;
+  animation:fadeUp .8s ease-out .4s both;
+}
+
+.btn{
+  padding:14px 36px;border-radius:12px;font-size:15px;font-weight:600;
+  text-decoration:none;cursor:pointer;transition:all .3s;
+  letter-spacing:.5px;font-family:inherit;
+}
+
+.btn-primary{
+  background:linear-gradient(135deg,var(--accent-purple),#6d28d9);
+  color:#fff;border:none;
+  box-shadow:0 0 30px rgba(139,92,246,0.25);
+}
+
+.btn-primary:hover{
+  transform:translateY(-2px);
+  box-shadow:0 0 50px rgba(139,92,246,0.4);
+}
+
+.btn-outline{
+  background:transparent;color:var(--text-primary);
+  border:1px solid var(--border-glow);
+}
+
+.btn-outline:hover{
+  border-color:var(--accent-purple);
+  background:rgba(139,92,246,0.06);
+}
+
+section{position:relative;z-index:1;padding:120px 24px}
+
+.container{max-width:1200px;margin:0 auto}
+
+.section-tag{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:600;
+  letter-spacing:3px;text-transform:uppercase;
+  color:var(--accent-electric);margin-bottom:16px;
+}
+
+.section-tag::before{content:'';width:24px;height:1px;background:var(--accent-electric)}
+
+.section-title{
+  font-family:'Rajdhani','Noto Sans SC',sans-serif;
+  font-size:clamp(32px,4vw,52px);font-weight:700;
+  line-height:1.2;margin-bottom:20px;
+}
+
+.section-desc{font-size:17px;color:var(--text-muted);line-height:1.8;max-width:600px}
+
+.about-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;
+  margin-top:56px;
+}
+
+.about-text h3{
+  font-size:20px;font-weight:600;margin-bottom:16px;
+  background:linear-gradient(90deg,var(--text-primary),var(--accent-purple));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+
+.about-text p{color:var(--text-muted);line-height:2;font-size:15px;margin-bottom:24px}
+
+.about-visual{
+  position:relative;height:400px;
+  display:flex;align-items:center;justify-content:center;
+}
+
+.hex-grid{position:relative;width:360px;height:360px}
+
+.hex{
+  position:absolute;width:100px;height:100px;
+  border:1px solid var(--border-glow);
+  background:var(--gradient-card);
+  clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);
+  display:flex;align-items:center;justify-content:center;
+  transition:all .4s;
+}
+
+.hex:hover{
+  border-color:var(--accent-purple);
+  box-shadow:0 0 40px rgba(139,92,246,0.2);
+  transform:scale(1.08);
+}
+
+.hex .hex-icon{font-size:28px;opacity:0.8}
+
+.hex:nth-child(1){top:0;left:130px}
+.hex:nth-child(2){top:85px;left:65px}
+.hex:nth-child(3){top:85px;left:195px}
+.hex:nth-child(4){top:170px;left:0px}
+.hex:nth-child(5){top:170px;left:130px;background:linear-gradient(135deg,rgba(139,92,246,0.15),rgba(6,214,160,0.08));border-color:rgba(139,92,246,0.3)}
+.hex:nth-child(6){top:170px;left:260px}
+.hex:nth-child(7){top:255px;left:65px}
+.hex:nth-child(8){top:255px;left:195px}
+
+.business-cards{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:56px;
+}
+
+.biz-card{
+  padding:40px 32px;border-radius:20px;
+  background:var(--bg-card);
+  border:1px solid var(--border-glow);
+  transition:all .4s;position:relative;overflow:hidden;
+}
+
+.biz-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--accent-purple),transparent);
+  opacity:0;transition:opacity .4s;
+}
+
+.biz-card:hover{
+  border-color:rgba(139,92,246,0.3);
+  transform:translateY(-4px);
+  box-shadow:0 20px 60px rgba(139,92,246,0.08);
+}
+
+.biz-card:hover::before{opacity:1}
+
+.biz-icon{
+  width:56px;height:56px;border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:26px;margin-bottom:24px;
+  background:linear-gradient(135deg,rgba(139,92,246,0.12),rgba(6,214,160,0.06));
+  border:1px solid rgba(139,92,246,0.15);
+}
+
+.biz-card h3{font-size:20px;font-weight:600;margin-bottom:12px}
+
+.biz-card p{font-size:14px;color:var(--text-muted);line-height:1.8}
+
+.product-section{overflow:hidden}
+
+.product-layout{
+  display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;
+  margin-top:56px;
+}
+
+.product-visual{
+  position:relative;height:420px;
+  background:linear-gradient(135deg,rgba(139,92,246,0.05),rgba(6,214,160,0.03));
+  border-radius:24px;overflow:hidden;
+  border:1px solid var(--border-glow);
+}
+
+.product-screen{
+  position:absolute;inset:24px;
+  background:rgba(15,13,26,0.9);border-radius:16px;
+  border:1px solid rgba(139,92,246,0.1);overflow:hidden;
+}
+
+.product-header{
+  padding:16px 20px;display:flex;align-items:center;gap:8px;
+  border-bottom:1px solid var(--border-glow);
+}
+
+.product-header .dots{display:flex;gap:6px}
+.product-header .dot-s{width:8px;height:8px;border-radius:50%}
+.product-header .dot-s:nth-child(1){background:#ef4444}
+.product-header .dot-s:nth-child(2){background:#f59e0b}
+.product-header .dot-s:nth-child(3){background:#22c55e}
+.product-header .url{margin-left:12px;font-size:11px;color:var(--text-muted);font-family:'Rajdhani',monospace;letter-spacing:1px}
+
+.chart-area{padding:20px;height:calc(100% - 50px);position:relative}
+
+.chart-line{position:absolute;bottom:60px;left:20px;right:20px;height:200px}
+
+.chart-line svg{width:100%;height:100%}
+
+.chart-bar-row{position:absolute;bottom:30px;left:20px;right:20px;height:30px;display:flex;align-items:end;gap:8px;padding:0 20px}
+
+.chart-bar{
+  flex:1;border-radius:4px 4px 0 0;
+  background:linear-gradient(180deg,var(--accent-purple),transparent);
+  opacity:0.5;animation:barGrow 1.5s ease-out forwards;
+}
+
+@keyframes barGrow{from{height:0}to{height:var(--h)}}
+
+.feature-list{display:flex;flex-direction:column;gap:32px}
+
+.feature-item{display:flex;gap:20px}
+
+.feature-num{
+  font-family:'Rajdhani',monospace;font-size:42px;font-weight:700;line-height:1;
+  background:linear-gradient(180deg,var(--accent-purple),transparent);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  min-width:48px;
+}
+
+.feature-item h3{font-size:18px;font-weight:600;margin-bottom:8px}
+
+.feature-item p{font-size:14px;color:var(--text-muted);line-height:1.8}
+
+
+
+footer{
+  position:relative;z-index:1;padding:32px 24px;
+  border-top:1px solid var(--border-glow);
+  text-align:center;
+}
+
+footer p{font-size:13px;color:var(--text-muted)}
+
+footer a{color:var(--accent-purple);text-decoration:none}
+
+.reveal{opacity:0;transform:translateY(40px);transition:all .8s cubic-bezier(.16,1,.3,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+
+@keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:0.3}}
+
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+
+.float-anim{animation:float 6s ease-in-out infinite}
+
+.mobile-menu-btn{display:none;background:none;border:none;color:var(--text-primary);font-size:24px;cursor:pointer}
+
+@media(max-width:1024px){
+  .business-cards{grid-template-columns:repeat(2,1fr)}
+  .about-grid,.product-layout,.contact-grid{grid-template-columns:1fr;gap:48px}
+  .about-visual{display:none}
+  nav{padding:0 24px}
+}
+
+@media(max-width:768px){
+  .business-cards{grid-template-columns:1fr}
+  .hero-stats{flex-direction:column;gap:32px}
+  .hero-cta{flex-direction:column;width:100%;max-width:320px}
+  .nav-links{display:none;position:fixed;top:72px;left:0;right:0;background:rgba(7,6,14,0.95);flex-direction:column;padding:24px;gap:20px;backdrop-filter:blur(24px);border-bottom:1px solid var(--border-glow)}
+  .nav-links.open{display:flex}
+  .mobile-menu-btn{display:block}
+  section{padding:80px 16px}
+}
+
+.scramble-text{display:inline-block;overflow:hidden}
+</style>
+</head>
 <body>
 
-<hr>
-<br><br>
-<table id="tbInformation" width="100%">
-    <tbody>
-    <tr>
-        <td width="500">
-            <!--            <h1>Quan XIAO <img src="indexfiles/blank.png"></h1>-->
-            <a href="http://sim.jxufe.edu.cn/down/show-1545.aspx?id=98" target="_blank"><h1>Quan XIAO<img src="indexfiles/blank.png"></h1></a>
-            <!--            <h1><img src="indexfiles/blank.png"></h1>-->
-        </td>
-        <td rowspan="3" align="center">
-            <a href="http://sim.jxufe.edu.cn/down/show-1545.aspx?id=98" target="_blank"><img src="indexfiles/xiaoquan.png" border="0" width="300" height="300"></a>
-        </td>
-    </tr>
+<canvas id="particles"></canvas>
 
-
-    <tr>
-        <td>
-            <h3>Professor (Full)</br>
-                School of Information Management</br>
-                Jiangxi University of Finance and Economics</br>
-</h3>
-        </td>
-    </tr>
-
-    </tbody>
-</table>
-
-<hr>
-<h3>Research Areas</h3>
-<h4>My research interests include <font color="red">information systems, e-commerce, data analytics, business intelligence, FinTech,</font> etc. More specifically, I am interested in the following topics:</h4>
-
-<ol id="ProjectsList" style="line-height: 120%">
-    <li>Live streaming shopping</li>
-    <li>Human computer interactions</li>
-    <li>Quantitative investment and risk management</li>
-
-</ol>
-<hr>
-
-<h3>RECENT NEWS:</h3>
-<p>
-<ol id="NewsOL">
-    <li><p>Four graduate students (Xiaojie WANG, Yang WU, Linbing JIANG and Weiling HUANG) participated in the PACIS2023 conference in Nanchang in July 2023.</p></li>
-    <img src="image/news/202307PACIS1.jpg" width="290px"> &nbsp; <img src="image/news/202307PACIS2.jpg" width="290px">
+<nav>
+  <div class="nav-logo">XIAOQUANT</div>
+  <button class="mobile-menu-btn" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="菜单">&#9776;</button>
+  <ul class="nav-links">
+    <li><a href="#about">关于小宽</a></li>
+    <li><a href="#business">核心业务</a></li>
+    <li><a href="#product">产品特色</a></li>
     
-    <li><p>Two graduate students (Xia LI and Weiling HUANG) participated in the CSWIM2023 conference in Changsha in June 2023.</p></li>
-    <img src="image/news/202306CSWIM.png" width="290px">
+  </ul>
+</nav>
 
-    <li><p>Two graduate students (Xia LI and Kuangzheng MAO) received their master's degrees in June 2023, congratulations!</p></li>
-    <img src="image/news/202306graduate.jpg" width="290px">
+<section class="hero" id="hero">
+  <div class="hero-badge"><span class="dot"></span> 智能量化 · 驱动未来</div>
+  <h1><span class="gradient-text">小宽量化</span></h1>
+  <p>以人工智能与量化模型为核心引擎，为专业投资者提供严谨、高效、可量化的财经管理解决方案，让数据驱动每一个决策</p>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="number" data-target="10">0</div>
+      <div class="label">年量化研究经验</div>
+    </div>
+    <div class="hero-stat">
+      <div class="number" data-target="500">0</div>
+      <div class="label">服务客户数</div>
+    </div>
+    <div class="hero-stat">
+      <div class="number" data-target="99.7">0</div>
+      <div class="label">% 系统稳定性</div>
+    </div>
+  </div>
+  <div class="hero-cta">
+    <a href="#product" class="btn btn-primary">探索产品</a>
+    <a href="#product" class="btn btn-outline">了解更多</a>
+  </div>
+</section>
 
-    <li><p>A paper from our group have been accepted in June 2023 by <b>Journal of the Association for Information Science and Technology</b>, the FMS A rank Journal.</p></li>
-    <img src="image/news/JASIST.png" width="290px">
-    
-    <li><p>A paper from our group have been published in May 2023 by <b>European Journal of Information Systems</b>, the FMS A rank Journal.</p></li>
-    <img src="image/news/EJIS.jpg" width="290px">
+<section id="about">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-tag">ABOUT US</div>
+      <div class="section-title">关于小宽</div>
+      <div class="section-desc">深耕量化领域，以技术和数据为核心竞争力，构建可持续的投资管理生态</div>
+    </div>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <h3>科技驱动，数据为基</h3>
+        <p>小宽量化专注于智能量化财经管理，将前沿的人工智能技术与经典金融理论深度融合。我们坚信，在信息爆炸时代，唯有系统化、量化的方法论才能穿越市场噪音，捕捉真正的alpha。</p>
+        <h3>严谨建模，持续迭代</h3>
+        <p>我们的研究团队由数学、计算机科学和金融工程背景的专家组成，建立了从数据采集、因子挖掘、策略研发到风控执行的完整闭环体系，确保每一笔投资决策都有据可依。</p>
+      </div>
+      <div class="about-visual reveal">
+        <div class="hex-grid">
+          <div class="hex"><span class="hex-icon">📊</span></div>
+          <div class="hex"><span class="hex-icon">🤖</span></div>
+          <div class="hex"><span class="hex-icon">⚡</span></div>
+          <div class="hex"><span class="hex-icon">🔒</span></div>
+          <div class="hex" style="width:120px;height:120px"><span class="hex-icon" style="font-size:36px">◆</span></div>
+          <div class="hex"><span class="hex-icon">📈</span></div>
+          <div class="hex"><span class="hex-icon">🧠</span></div>
+          <div class="hex"><span class="hex-icon">🌐</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
+<section id="business">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-tag">CORE BUSINESS</div>
+      <div class="section-title">核心业务</div>
+      <div class="section-desc">覆盖量化投资全链路，从策略研发到落地执行，提供一站式智能财经管理服务</div>
+    </div>
+    <div class="business-cards">
+      <div class="biz-card reveal">
+        <div class="biz-icon">🎯</div>
+        <h3>量化策略研发</h3>
+        <p>基于统计学和机器学习方法，发掘市场规律，构建多因子、高频和CTA策略，持续迭代优化以适应多变的市场环境</p>
+      </div>
+      <div class="biz-card reveal">
+        <div class="biz-icon">🛡️</div>
+        <h3>智能风险管控</h3>
+        <p>实时监控市场风险暴露，通过动态对冲、VaR约束和尾部风险防护，构建多层防线体系，守护资产安全底线</p>
+      </div>
+      <div class="biz-card reveal">
+        <div class="biz-icon">⚙️</div>
+        <h3>资产配置优化</h3>
+        <p>运用现代投资组合理论与强化学习算法，智能匹配投资者风险偏好，实现跨周期、跨资产的最优配置方案</p>
+      </div>
+      <div class="biz-card reveal">
+        <div class="biz-icon">📡</div>
+        <h3>高频交易系统</h3>
+        <p>低延迟、高并发的交易引擎，支持毫秒级订单执行，结合智能路由和滑点管理，最大化策略落地效率</p>
+      </div>
+      <div class="biz-card reveal">
+        <div class="biz-icon">🔬</div>
+        <h3>另类数据分析</h3>
+        <p>整合卫星遥感、舆情监控、供应链追踪等多源另类数据，挖掘传统财务指标之外的增量信息alpha</p>
+      </div>
+      <div class="biz-card reveal">
+        <div class="biz-icon">🏦</div>
+        <h3>机构服务方案</h3>
+        <p>为银行、券商、保险等金融机构提供白标量化平台、策略孵化与技术输出，赋能机构投资者数字化转型</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-</ol>
-</p>
-<hr>
-
-
-<h3>Publications</h3>
-<table id="tbPublications">
-    <tbody>
-
-    <tr><td><strong>In English:</strong></td></tr>
-    <tr><td><br></td></tr>
-
-    <tr>
-        <td width="306"><hr></td>
-        <td><hr></td>
-    </tr>
-    <tr><td><br></td></tr>
-        
-    <tr>
-        <td width="306"><img src="image/papers/EJIS202305.png" width="290px"></td>
-        <td style="line-height: 120%">
-            Siponen M., Klaavuniemi T., Xiao Q.*. "Splitting versus lumping: Narrowing a theory’s scope may increase its value". European Journal of Information Systems, 2023.[<a href="pdf/2023-EJIS-Splitting versus lumping narrowing a theory s scope may increase its value.pdf" target="_blank">pdf</a>]
-            [<a href="https://doi.org/10.1080/0960085X.2023.2208380" target="_blank">doi</a>]
-        </td>
-    </tr>
-    <tr><td><br></td></tr>
-
-    <tr>
-        <td width="306"><img src="image/papers/IR2022.png" width="290px"></td>
-        <td style="line-height: 120%">
-            Xiao Q, Siponen M., Zhang X.*, Lu F., Chen S., Mao M. "Impacts of platform design on consumer commitment and online review intention: Does use context matter in dual-platform e-commerce?". Internet Research, 2022.[<a href="pdf/2022-IR-Impacts of platform design on consumer commitment and online review intention.pdf" target="_blank">pdf</a>]
-            [<a href="https://doi.org/10.1108/INTR-03-2021-0152" target="_blank">doi</a>]
-        </td>
-    </tr>
-    <tr><td><br></td></tr>
-        
-    <tr>
-        <td width="306"><img src="image/papers/JRCS2022.png" width="290px"></td>
-        <td style="line-height: 120%">
-            Xiao Q., Wan S., Zhang X.*, Siponen M., Qu L., Li X. "How consumers’ perceptions differ towards the design features of mobile live streaming shopping platform: A mixed-method investigation of respondents from Taobao Live". Journal of Retailing and Consumer Services, 2022.[<a href="pdf/2022-JRCS-How consumers' perceptions differ towards the design features of mobile live streaming shopping platform.pdf" target="_blank">pdf</a>]
-            [<a href="https://doi.org/10.1016/j.jretconser.2022.103098" target="_blank">doi</a>]
-        </td>
-    </tr>
-    <tr><td><br></td></tr>
-
-
-
-    <tr>
-        <td width="306"><img src="image/papers/IPM2022.png" width="290px"></td>
-        <td style="line-height: 120%">
-            Wu Y., Zhang X.*, Xiao Q. "Appeal to the head and heart: The persuasive effects of medical crowdfunding charitable appeals on willingness to donate". Information Processing and Management, 2022.[<a href="pdf/2022-IPM-Appeal to the head and heart- The persuasive effects of medical crowdfunding charitable appeals on willingness to donate.pdf" target="_blank">pdf</a>]
-            [<a href="https://doi.org/10.1016/j.ipm.2021.102792" target="_blank">doi</a>]
-        </td>
-    </tr>
-    <tr><td><br></td></tr>
-
-    <tr>
-        <td width="306"><img src="image/papers/TI2021.png" width="290px"></td>
-        <td style="line-height: 120%">
-            Xiao Q. "Understanding the asymmetric perceptions of smartphone security from security feature perspective: A comparative study". Telematics and Informatics, 2021.[<a href="pdf/2021-TI-Understanding the asymmetric perceptions of smartphone security from security feature perspective_ A comparative study.pdf" target="_blank">pdf</a>]
-            [<a href="https://doi.org/10.1016/j.tele.2020.101535" target="_blank">doi</a>]
-        </td>
-    </tr>
-    <tr><td><br></td></tr>
-
-    <tr>
-        <td width="306"><img src="image/papers/KBS2021.png" width="290px"></td>
-        <td style="line-height: 120%">
-            Mao M., Chen S.*, Zhang F., Han J., Xiao Q. "Hybrid ecommerce recommendation model incorporating product taxonomy and folksonomy". Knowledge-Based Systems, 2021.[<a href="pdf/2021-KBS-Hybrid ecommerce recommendation model incorporating product taxonomy and folksonomy.pdf" target="_blank">pdf</a>]
-            [<a href="https://doi.org/10.1016/j.knosys.2020.106720" target="_blank">doi</a>]
-        </td>
-    </tr>
-    <tr><td><br></td></tr>
-
-    <tr>
-        <td width="306"><img src="image/papers/JMIR2021.png" width="290px"></td>
-        <td style="line-height: 120%">
-            Zhang X., Hu W., Xiao Q.*. "Influences of medical crowdfunding website design features on trust and intention to donate: Controlled laboratory experiment". Journal of Medical Internet Research, 2021.[<a href="pdf/2021-JMIR-Influences of Medical Crowdfunding Website Design Features on Trust and Intention to Donate_ Controlled Laboratory Experiment_withAppendix.pdf" target="_blank">pdf</a>]
-            [<a href="https://doi.org/10.2196/25554" target="_blank">doi</a>]
-        </td>
-    </tr>
-    <tr><td><br></td></tr>
-
-    <tr>
-        <td width="306"><img src="image/papers/CC2021.png" width="290px"></td>
-        <td style="line-height: 120%">
-            Pang J., Zhang N., Xiao Q.*, Qi F., Xue X. "A new intelligent and data-driven product quality control system of industrial valve manufacturing process in CPS". Computer Communications, 2021.[<a href="pdf/2021-CC-A new intelligent and data-driven product quality control system of industrial valve manufacturing process in CPS.pdf" target="_blank">pdf</a>]
-            [<a href="https://doi.org/10.1016/j.comcom.2021.04.022" target="_blank">doi</a>]
-        </td>
-    </tr>
-    <tr><td><br></td></tr>
-        
-
-    <tr><td><strong>In Chinese:</strong></td></tr>
-    <tr><td><br></td></tr>
-
-    <tr>
-        <td width="306"><hr></td>
-        <td><hr></td>
-    </tr>
-    <tr><td><br></td></tr>
-        
-    <tr>
-        <td width="306"><img src="image/papers/NANKAI2023.png" width="290px"></td>
-        <td style="line-height: 120%">
-            Zhang X., Tang Y., Wang Y., Xiao Q.*. "It starts with curiosity and ends with worry: The double-edged effects of 'clickbait' on social media users' clicks and shares". Nankai Business Review, 2023.[<a href="pdf/2023-南开管理评论-发乎奇，止乎忧.pdf" target="_blank">pdf</a>]
-            [<a href="https://kns.cnki.net/kcms/detail/12.1288.F.20230302.1219.003.html" target="_blank">url</a>]
-        </td>
-    </tr>
-    <tr><td><br></td></tr>
-
-    <tr>
-        <td width="306"><img src="image/papers/CJMS2022.png" width="290px"></td>
-        <td style="line-height: 120%">
-            Xiao Q., Wan S., Zhang X.*, Cai S. "User’s quality perception and satisfaction towards mobile live streaming commerce platform from the perspective of IT affordance". Chinese Journal of Management Science, 2022.[<a href="pdf/2022-中国管理科学-IT能供性视角下移动直播电商平台用户质量感知与满意研究.pdf" target="_blank">pdf</a>]
-            [<a href="https://doi.org/10.16381/j.cnki.issn1003-207x.2021.0468" target="_blank">doi</a>]
-        </td>
-    </tr>
-    <tr><td><br></td></tr>
-
-    <tr>
-        <td width="306"><img src="image/papers/CJM2022.png" width="290px"></td>
-        <td style="line-height: 120%">
-            Zhang X., Zhao Y., Xiao Q.*. "A study on the impact of medical crowdfunding project information on donation effectiveness". Chinese Journal of Management, 2022.[<a href="pdf/2022-管理学报-医疗众筹项目信息对捐赠效果的影响研究.pdf" target="_blank">pdf</a>]
-            [<a href="https://doi.org/10.3969/j.issn.1672-884x.2022.01.010" target="_blank">doi</a>]
-        </td>
-    </tr>
-    <tr><td><br></td></tr>
-
-    <tr>
-        <td width="306"><img src="image/papers/JMS2021.png" width="290px"></td>
-        <td style="line-height: 120%">
-            Zhang X., Chen Z., Xiao Q.*. "Influence of information expression of medical crowdfunding charitable appeal on individual donation". Journal of Management Science, 2021.[<a href="pdf/2021-管理科学-医疗众筹慈善诉求的信息表达对个体捐赠的影响.pdf" target="_blank">pdf</a>]
-            [<a href="https://doi.org/10.3969/j.issn.1672-0334.2021.05.006" target="_blank">doi</a>]
-        </td>
-    </tr>
-    <tr><td><br></td></tr>
-        
-     
-    </tbody></table>
-<br>
-<hr>
-
-<h3>Research Projects (PI)</h3>
-<p>
-<ol id="ProjectsOL" style="line-height: 150%">
-    <li>Jan.2019~Dec.2022, “Data-driven based research on design strategies enhancing effectiveness of consumer online review system”, Sponsored by National Science Foundation of China (No. 71861014), PI</li>
-    <li>Jan.2014~Dec.2017, “Research on support models and methods for risk identification of technological innovation from cognitive perspective”, Sponsored by National Science Foundation of China (No. 71361011), PI</li>
-
-</ol>
-</p>
-
-<hr>
-
-
-
-<h3>PROFESSIONAL ACTIVITIES:</h3>
-<p><em>Reviewers</em></p>
-<table>
-    <tbody>
-    <tr>
-        <td>Internet Research (SCI/SSCI Q1)</td>
-    </tr>
-    
-    <tr>
-        <td>Information Processing and Management (SCI/SSCI Q1)</td>
-    </tr>
-    
-    <tr>
-        <td>Financial Innovation (SSCI Q1)</td>
-    </tr>
-
-    <tr>
-        <td>Technological Forecasting and Social Change (SSCI Q1)</td>
-    </tr>
-
-    <tr>
-        <td>Journal of Enterprise Information Management (SSCI Q1)</td>
-    </tr>
-    
-    <tr>
-        <td>Journal of Retailing and Consumer Services (SSCI Q1)</td>
-    </tr>
-    
-    <tr>
-        <td>Journal of Medical Internet Research (SCI Q1)</td>
-    </tr>
-    
-    <tr>
-        <td>Journal of Organizational and End User Computing (SSCI Q1)</td>
-    </tr>
-    
-    <tr>
-        <td>Journal of Management Science and Engineering</td>
-    </tr>
-    
-
-    </tbody></table>
-<p><em>Social works</em></p>
-<table>
-    <tbody>
-    <tr>
-        <td>Visiting Researcher
-        </td>
-    </tr>
-    <tr>
-        <td>Faculty of Information Technology
-        </td>
-    </tr>
-    <tr>
-        <td> University of Jyvaskyla (Finland)
-        </td>
-    </tr>
-
-    </tbody>
-</table>
+<section id="product" class="product-section">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-tag">PRODUCT</div>
+      <div class="section-title">产品特色</div>
+      <div class="section-desc">小宽量化平台——围绕研究、交易与风险管理的一体化智能投资中枢</div>
+    </div>
+    <div class="product-layout">
+      <div class="product-visual reveal">
+        <div class="product-screen">
+          <div class="product-header">
+            <div class="dots">
+              <div class="dot-s"></div><div class="dot-s"></div><div class="dot-s"></div>
+            </div>
+            <span class="url">xiaoquant.com/dashboard</span>
+          </div>
+          <div class="chart-area">
+            <svg class="chart-line-svg" viewBox="0 0 400 200" preserveAspectRatio="none" style="position:absolute;bottom:40px;left:0;right:0;width:100%;height:70%">
+              <defs>
+                <linearGradient id="chartGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" style="stop-color:rgba(139,92,246,0.3)"/>
+                  <stop offset="100%" style="stop-color:rgba(139,92,246,0)"/>
+                </linearGradient>
+              </defs>
+              <path d="M0,160 Q40,140 80,120 T160,80 T240,100 T320,50 T400,30" fill="none" stroke="#8b5cf6" stroke-width="2.5" class="chart-path"/>
+              <path d="M0,160 Q40,140 80,120 T160,80 T240,100 T320,50 T400,30 V200 H0 Z" fill="url(#chartGrad)"/>
+              <path d="M0,170 Q50,155 100,145 T200,130 T300,140 T400,100" fill="none" stroke="#06d6a0" stroke-width="1.5" stroke-dasharray="6,4" opacity="0.6"/>
+            </svg>
+            <div class="chart-bar-row">
+              <div class="chart-bar" style="--h:65%"></div>
+              <div class="chart-bar" style="--h:45%"></div>
+              <div class="chart-bar" style="--h:80%"></div>
+              <div class="chart-bar" style="--h:55%"></div>
+              <div class="chart-bar" style="--h:70%"></div>
+              <div class="chart-bar" style="--h:40%"></div>
+              <div class="chart-bar" style="--h:90%"></div>
+              <div class="chart-bar" style="--h:60%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="feature-list reveal">
+        <div class="feature-item">
+          <div class="feature-num">01</div>
+          <div>
+            <h3>AI 策略引擎</h3>
+            <p>集成深度学习与强化学习框架，自动回测、参数寻优与策略组合，让研究效率提升10倍</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-num">02</div>
+          <div>
+            <h3>实时风控面板</h3>
+            <p>毫秒级风险监控仪表盘，多维度归因分析、实时预警与自动减仓，关键时刻不缺席</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-num">03</div>
+          <div>
+            <h3>全资产覆盖</h3>
+            <p>支持股票、期货、期权、加密货币等多资产类别，统一策略框架联动配置，一平台管理所有标的</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-num">04</div>
+          <div>
+            <h3>API 与集成</h3>
+            <p>提供标准化RESTful API与SDK，无缝对接券商柜台与数据源，5分钟完成系统接入</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 
-<hr>
-<h3>Team Members</h3>
-<table width="100%">
-    <tbody>
-    <tr><td><br></td></tr>
-    <tr align="center">
-        <td width="16.6%"><a href=""><img src="image/member/xiali.jpg" width="100%">Xia LI</a></td>
-        <td width="16.6%"><a href=""><img src="image/member/xiaojiewang.jpg" width="100%">Xiaojie WANG</a></td>
-        <td width="16.6%"><a href=""><img src="image/member/zhanyuzhang.jpg" width="100%">Zhanyu ZHANG</a></td>
-        <td width="16.6%"><a href=""><img src="image/member/yangwu.jpg" width="100%">Yang WU</a></td>
-        <td width="16.6%"><a href=""><img src="image/member/weilinghuang.jpg" width="100%">Weiling HUANG</a></td>
-        <td width="16.6%"><a href=""><img src="image/member/linbingjiang.jpg" width="100%">Linbing JIANG</a></td>
-    </tr>
-    <tr><td><br></td></tr>
-    
-    <tr align="center">
-        <td width="16.6%"><a href=""><img src="image/member/kexinzhang.jpg" width="100%">Kexin ZHANG</a></td>
-        <td width="16.6%"><a href=""><img src="image/member/jiaoding.jpg" width="100%">Jiao DING</a></td>
-        <td width="16.6%"><a href=""><img src="image/member/yongyouzheng.jpg" width="100%">Yongyou ZHENG</a></td>
-        <td width="16.6%"><a href=""><img src="image/member/shunli.jpg" width="100%">Shun LI (graduated)</a></td>
-        <td width="16.6%"><a href=""><img src="image/member/no.png" width="100%">Shanshan WAN (graduated)</a></td>
-        <td width="16.6%"><a href=""><img src="image/member/ziyufan.jpeg" width="100%">Ziyu Fan (graduated)</a></td>
-    </tr>
-    <tr><td><br></td></tr>
 
-        <tr align="center">
-        <td width="16.6%"><a href=""><img src="image/member/no.png" width="100%">Kuangzheng MAO (graduated)</a></td>
-        <td width="16.6%"></td>
-        <td width="16.6%"></td>
-        <td width="16.6%"></td>
-        <td width="16.6%"></td>
-        <td width="16.6%"></td>
-    </tr>
-    <tr><td><br></td></tr>
-    
+<footer>
+  <p>&copy; 2026 <a href="http://www.xiaoquant.com">小宽量化 Xiaoquant</a>. All rights reserved. 智能量化 · 驱动未来</p>
+</footer>
 
-    </tbody>
-</table>
+<script>
+// Particle animation
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+let particles = [];
+let mouse = { x: null, y: null };
 
-<hr>
-<br>
-<h4>WEBSITE VISITING STATISTICS</h4>
-<table>
-    <tbody>
-    <tr>
-        <td>
-            <a href="https://clustrmaps.com/site/1bva3"  title="Visit tracker"><img src="//www.clustrmaps.com/map_v2.png?d=51USgdwQLcwr9sdbyCQj8HAtHO9YbBeCYqTM1ODiyfQ&cl=ffffff" /></a>
-        </td>
-    </tr>
-    </tbody>
-</table>
-<br>
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
 
-</body></html>
+window.addEventListener('mousemove', (e) => {
+  mouse.x = e.clientX;
+  mouse.y = e.clientY;
+});
+
+class Particle {
+  constructor() {
+    this.reset();
+  }
+  reset() {
+    this.x = Math.random() * canvas.width;
+    this.y = Math.random() * canvas.height;
+    this.vx = (Math.random() - 0.5) * 0.4;
+    this.vy = (Math.random() - 0.5) * 0.4;
+    this.radius = Math.random() * 1.5 + 0.5;
+    this.opacity = Math.random() * 0.5 + 0.1;
+  }
+  update() {
+    this.x += this.vx;
+    this.y += this.vy;
+    if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+    if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+  }
+  draw() {
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(139, 92, 246, ${this.opacity})`;
+    ctx.fill();
+  }
+}
+
+const particleCount = Math.min(80, Math.floor(window.innerWidth / 16));
+for (let i = 0; i < particleCount; i++) particles.push(new Particle());
+
+function drawLines() {
+  for (let i = 0; i < particles.length; i++) {
+    for (let j = i + 1; j < particles.length; j++) {
+      const dx = particles[i].x - particles[j].x;
+      const dy = particles[i].y - particles[j].y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < 150) {
+        ctx.beginPath();
+        ctx.moveTo(particles[i].x, particles[i].y);
+        ctx.lineTo(particles[j].x, particles[j].y);
+        ctx.strokeStyle = `rgba(139, 92, 246, ${0.08 * (1 - dist / 150)})`;
+        ctx.lineWidth = 0.5;
+        ctx.stroke();
+      }
+    }
+    if (mouse.x !== null) {
+      const dx = particles[i].x - mouse.x;
+      const dy = particles[i].y - mouse.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < 200) {
+        ctx.beginPath();
+        ctx.moveTo(particles[i].x, particles[i].y);
+        ctx.lineTo(mouse.x, mouse.y);
+        ctx.strokeStyle = `rgba(6, 214, 160, ${0.15 * (1 - dist / 200)})`;
+        ctx.lineWidth = 0.6;
+        ctx.stroke();
+      }
+    }
+  }
+}
+
+function animate() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  particles.forEach(p => { p.update(); p.draw(); });
+  drawLines();
+  requestAnimationFrame(animate);
+}
+animate();
+
+// Scroll reveal
+const revealEls = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+revealEls.forEach(el => observer.observe(el));
+
+// Counter animation
+function animateCounters() {
+  document.querySelectorAll('.hero-stat .number').forEach(el => {
+    const target = parseFloat(el.dataset.target);
+    const isDecimal = target % 1 !== 0;
+    const duration = 2000;
+    const startTime = performance.now();
+    function tick(now) {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const current = target * eased;
+      el.textContent = isDecimal ? current.toFixed(1) : Math.floor(current);
+      if (progress < 1) requestAnimationFrame(tick);
+      else el.textContent = isDecimal ? target.toFixed(1) : target;
+    }
+    requestAnimationFrame(tick);
+  });
+}
+
+const heroObs = new IntersectionObserver((entries) => {
+  if (entries[0].isIntersecting) {
+    animateCounters();
+    heroObs.disconnect();
+  }
+}, { threshold: 0.5 });
+heroObs.observe(document.querySelector('.hero-stats'));
+
+// Smooth scroll for nav links
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', (e) => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth' });
+      document.querySelector('.nav-links').classList.remove('open');
+    }
+  });
+});
+
+
+</script>
+
+</body>
+</html>
